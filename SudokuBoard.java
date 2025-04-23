@@ -17,7 +17,8 @@ public class SudokuBoard {
    }
 
    public boolean isValid(){
-      return checkNums() && checkRows() && checkColums() &&checkMiniSquare() ;
+      return checkNums() && checkRows() && checkColums() && checkMiniSquare();
+
    }
 
    private boolean checkNums(){
@@ -51,7 +52,6 @@ public class SudokuBoard {
    private boolean checkColums(){
       for (int col = 0; col <board.length ; col++) {
          Set<Character> boardSet = new HashSet<>();
-
          for (int row = 0; row < board[0].length; row++) {
             if(board[row][col]!=' ' && board[row][col]!='.' && board[row][col]!='0'){
                char ch = board[row][col];
@@ -66,11 +66,25 @@ public class SudokuBoard {
    }
 
    private boolean checkMiniSquare(){
+      for (int i = 1; i <= 9; i++) {
+         char[][] mini = miniSquare(i);
+         Set<Character> miniSet = new HashSet<>();
+         for (int col = 0; col <mini.length ; col++) {
+            for (int row = 0; row < mini[0].length; row++) {
+               if(mini[row][col]!=' ' && mini[row][col]!='.' && mini[row][col]!='0'){
+                  char ch = mini[row][col];
+                  if(!miniSet.add(ch)){
+                     return false;
+                  }
+               }
+            }
+         }
 
+      }
       return true;
    }
-   private int[][] miniSquare(int spot) {
-      int[][] mini = new int[3][3];
+   private char[][] miniSquare(int spot) {
+      char[][] mini = new char[3][3];
       for(int r = 0; r < 3; r++) {
          for(int c = 0; c < 3; c++) {
             // whoa - wild! This took me a solid hour to figure out (at least)
