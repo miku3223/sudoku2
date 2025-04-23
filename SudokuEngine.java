@@ -5,8 +5,10 @@ public class SudokuEngine {
 
    public static void main(String[] args) {
       try {
-         SudokuBoard myBoard = new SudokuBoard("data1.sdk");
+         SudokuBoard myBoard = new SudokuBoard("boards/valid-incomplete.sdk");
          System.out.println(myBoard);
+         System.out.println(myBoard.isSolved());
+
       } catch(FileNotFoundException e) {
          System.out.println("Board file not found!");
       }

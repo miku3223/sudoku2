@@ -96,19 +96,32 @@ public class SudokuBoard {
       return mini;
    }
 
-   public boolean isSolved(){
-      Map<Integer, Character> numberCounts = new HashMap<>();
-      for (int r = 0; r < board.length ; r++) {
-         for (int c = 0; c < board[0].length; c++) {
-            numberCounts.put(r*9+c,board[r][c]);
-         }
+   public boolean isSolved() {
+      if (!isValid()) {
+         return false;
       }
-      for (int i = 1; i <= 9; i++) {
-         if (!numberCounts.containsKey(i)) {
-            return false;
+
+      Map<Character, Integer> counts = new HashMap<>();
+      for (char c = '1'; c <= '9'; c++) {
+         counts.put(c, 0);
+      }
+
+      for (char[] row : board) {
+         for (char val : row) {
+            if (val != '0') {
+               if (val < '1' || val > '9') {
+                  return false;
+               }
+               counts.put(val, counts.get(val) + 1);
+            }
          }
       }
 
+      for (int count : counts.values()) {
+         if (count != 9) {
+            return false;
+         }
+      }
 
       return true;
    }
