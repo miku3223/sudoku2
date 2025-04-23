@@ -96,6 +96,23 @@ public class SudokuBoard {
       return mini;
    }
 
+   public boolean isSolved(){
+      Map<Integer, Character> numberCounts = new HashMap<>();
+      for (int r = 0; r < board.length ; r++) {
+         for (int c = 0; c < board[0].length; c++) {
+            numberCounts.put(r*9+c,board[r][c]);
+         }
+      }
+      for (int i = 1; i <= 9; i++) {
+         if (!numberCounts.containsKey(i)) {
+            return false;
+         }
+      }
+
+
+      return true;
+   }
+
    public String toString() {
       StringBuilder output = new StringBuilder("┏━━━┯━━━┯━━━┳━━━┯━━━┯━━━┳━━━┯━━━┯━━━┓\n");
       for(int r = 0; r < board.length; r++) {
