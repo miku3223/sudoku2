@@ -23,11 +23,11 @@ public class SudokuBoard {
    private boolean checkNums(){
       for (int r = 0; r < board.length; r++) {
          for (int c = 0; c < board[0].length; c++) {
-
-
+            if(!((board[r][c] >= '1' && board[r][c] <= '9') || board[r][c] == ' ' || board[r][c] == '.')){
+               return false;
+            }
          }
       }
-
       return true;
    }
 
