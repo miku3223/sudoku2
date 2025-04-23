@@ -32,12 +32,36 @@ public class SudokuBoard {
    }
 
    private boolean checkRows(){
+      for (int r = 0; r <board.length ; r++) {
+         Set<Character> boardSet = new HashSet<>();
 
+         for (int c = 0; c < board[0].length; c++) {
+            if(board[r][c]!=' ' && board[r][c]!='.' && board[r][c]!='0'){
+               char ch = board[r][c];
+               if(!boardSet.add(ch)){
+                  return false;
+               }
+            }
+
+         }
+      }
       return true;
    }
 
    private boolean checkColums(){
+      for (int col = 0; col <board.length ; col++) {
+         Set<Character> boardSet = new HashSet<>();
 
+         for (int row = 0; row < board[0].length; row++) {
+            if(board[row][col]!=' ' && board[row][col]!='.' && board[row][col]!='0'){
+               char ch = board[row][col];
+               if(!boardSet.add(ch)){
+                  return false;
+               }
+            }
+
+         }
+      }
       return true;
    }
 
