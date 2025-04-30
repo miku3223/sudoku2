@@ -100,6 +100,14 @@ public class SudokuBoard {
       if (!isValid()) {
          return false;
       }
+      //check for empty spaces
+      for (char[] row : board) {
+         for (char val : row) {
+            if (val == ' ' || val == '.' || val == '0') {
+               return false;
+            }
+         }
+      }
 
       Map<Character, Integer> counts = new HashMap<>();
       for (char c = '1'; c <= '9'; c++) {
@@ -108,12 +116,7 @@ public class SudokuBoard {
 
       for (char[] row : board) {
          for (char val : row) {
-            if (val != '0') {
-               if (val < '1' || val > '9') {
-                  return false;
-               }
-               counts.put(val, counts.get(val) + 1);
-            }
+            counts.put(val, counts.get(val) + 1);
          }
       }
 
